@@ -1,0 +1,81 @@
+
+<!-- index.html -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" id="audio-processing-tab">Audio Processing</a></li>
+            <li><a href="#" id="speech-to-text-tab">Speech to Text</a></li>
+        </ul>
+    </nav>
+
+    <div id="audio-processing-section">
+        <h1>Audio Processing App</h1>
+        <div class="upload-section">
+            <input type="file" id="audio-file" required>
+            <br><br>
+            <button id="transcribe-btn">Transcribe</button>
+            <button id="analyze-btn">Analyze</button>
+            <button id="identify-speakers-btn">Identify Speakers</button>
+        </div>
+
+        <div id="loading-section" style="display:none;">
+            <img src="{{ url_for('serve_assets', filename='loading.gif') }}" alt="Loading..." id="loading-gif">
+            <div id="loading-text">Loading...</div>
+        </div>
+
+        <div id="transcription-section" class="result-section" style="display:none;">
+            <h2>Transcription Result</h2>
+            <div id="transcription-content"></div>
+        </div>
+
+        <div id="analysis-section" class="result-section" style="display:none;">
+            <h2>Analysis Result</h2>
+            <div id="analysis-content"></div>
+        </div>
+
+        <div id="speakers-section" class="result-section" style="display:none;">
+            <h2>Speaker Identification</h2>
+            <div id="speakers-content"></div>
+        </div>
+    </div>
+
+    <div id="speech-to-text-section" style="display:none;">
+        <h1>Speech to Text Voice Note App</h1>
+        <img src="{{ url_for('serve_assets', filename='code-mic-150.png') }}" alt="Voice Note App Logo">
+        <p class="page-description">This app allows you to take voice and/or text notes and play them back.</p>
+        <div class="app">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Add New Voice Note</h3>
+                    <div class="input-single">
+                        <textarea id="note-textarea" placeholder="Create a new note by typing or using voice recognition." rows="6"></textarea>
+                    </div>
+                    <button id="start-record-btn" class="btn-success" title="Start Recording">Start Recognition</button>
+                    <button id="pause-record-btn" class="btn-warning" title="Pause Recording">Pause Recognition</button>
+                    <button id="save-note-btn" class="btn-info" title="Save Note">Save Note</button>
+                    <p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>My Voice Notes</h3>
+                    <ul id="notes">
+                        <li>
+                            <p class="no-notes">You don't have any notes.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

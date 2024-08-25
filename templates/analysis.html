@@ -1,0 +1,21 @@
+
+<!-- analysis.html -->
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analysis Result</title>
+  </head>
+  <body>
+    <h1>Analysis Result</h1>
+    <ul>
+      {% for text, count, rank in highlights %}
+        <li><strong>Highlight:</strong> {{ text }} | <strong>Count:</strong> {{ count }} | <strong>Rank:</strong> {{ rank }}</li>
+      {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+  </body>
+</html>
