@@ -5,8 +5,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home Page</title>
+    <title>AI Powered Voice And Text Tools And Games</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!--Bootstrap 4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Source+Code+Pro:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+
+
 </head>
 <body>
     <div id="jagah"></div>
@@ -14,10 +28,12 @@
         <ul>
             <li><a href="#" id="audio-processing-tab"><button class='generateButton glowing-btn'><span class='glowing-txt'>A<span class='faulty-letter'>u</span>dio Processing</span></button></a></li>
             <li><a href="#" id="speech-to-text-tab"><button class='generateButton glowing-btn'><span class='glowing-txt'>S<span class='faulty-letter'>p</span>eech To Text</span></button></a></li>
+            <li><a href="#" id="typing-test-tab"><button class='generateButton glowing-btn'><span class='glowing-txt'>T<span class='faulty-letter'>y</span>ping Test Game</span></button></a></li>
         </ul>
     </nav>
+    
     <div id="audio-processing-section">
-        <h1>Audio Processing App</h1>
+        <h1 id="apapp" style="margin-top: 40px;">Audio Processing App</h1>
         <div class="upload-section">
             <input type="file" id="audio-file" required>
             <br><br>
@@ -30,7 +46,7 @@
         </div>
         <div id="loading-section" style="display:none;">
             <img src="{{ url_for('serve_assets', filename='loading123.gif') }}" alt="Loading..." id="loading-gif">
-            <div id="loading-text">Loading...</div>
+            <!-- <div id="loading-text">Loading...</div> -->
         </div>
         <div id="transcription-section" class="result-section" style="display:none;">
             <h2>Transcription Result</h2>
@@ -53,7 +69,7 @@
         <div class="app">
             <div class="row">
                 <div class="col-md-6">
-                    <h3>Add New Voice Note</h3>
+                    <h3 id="anvn">Add New Voice Note</h3>
                     <div class="input-single">
                         <textarea id="note-textarea" placeholder="Create a new note by typing or using voice recognition." rows="6"></textarea>
                     </div>
@@ -63,7 +79,7 @@
                     <!-- <p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access.</p> -->
                 </div>
                 <div class="col-md-6">
-                    <h3>My Voice Notes</h3>
+                    <h3 id="mvn">My Voice Notes</h3>
                     <ul id="notes">
                         <li>
                             <p class="no-notes">You don't have any notes.</p>
@@ -73,6 +89,51 @@
             </div>
         </div>
     </div>
+
+    <!-- Typing test game section -->
+
+    <div style="background: #212121;">
+        <div id="typing-test-section" style="display:none; background: #212121;">
+            <div class="container-fluid box1">
+                <div class="top">
+                    <h1 id="heading" class="yellow">Typing Speed Test</h1>
+                    <div class="limits-box">
+                        <div class="limit">
+                            <a id="thirty" class="yellow" href="#">30s</a>
+                            <a id="sixty" href="#">60s</a>
+                        </div>
+                        <div class="limit">
+                            <a id="beg" class="yellow" href="#">beginner</a>
+                            <a id="pro" href="#">pro</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats center">
+                    <div class="stat-block if">
+                        <div id="timeName" class="stat-name yellow if">Time</div>
+                        <div id="time" class="details if">30</div>
+                    </div>
+                    <div class="stat-block if">
+                        <div id="cwName" class="stat-name yellow if">CW</div>
+                        <div id="cw" class="details if">0</div>
+                    </div>
+                </div>
+                <div class="text-display" id="textDisplay"></div>
+                <div class="input-area center">
+                    <textarea rows="1" class="text-input" id="textInput" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+                </div>
+                <div class="restart-button center">
+                    <a id="restartBtn" class="current" href="#">
+                        <i class="fas fa-redo"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
