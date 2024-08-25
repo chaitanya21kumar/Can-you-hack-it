@@ -1,5 +1,5 @@
-<!-- result.html -->
 
+<!-- result.html -->
 
 
 <!doctype html>
@@ -8,10 +8,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Transcription Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body>
     <h1>Transcription Result</h1>
-    <p>{{ result }}</p>
+    <p class="result-text" id="res-white" style="color: white;">{{ result }}</p>
     <a href="/">Back to Home</a>
   </body>
 </html>
+
+
