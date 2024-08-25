@@ -4,6 +4,9 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 import assemblyai as aai
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lsa import LsaSummarizer
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 # Ensure the upload folder exists
@@ -14,6 +17,19 @@ aai.settings.api_key = "54af620c9fcb4b55a2a87d273a94dcf5"
 @app.route('/')
 def home():
     return render_template('index.html')
+@app.route('/summarize', methods=['POST'])
+def summarize():
+    data = request.json
+    text = data['text']
+    num_of_lines = data['num_of_lines']
+
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summarizer = LsaSummarizer()
+    summary = summarizer(parser.document, num_of_lines)  # Summarize to num_of_lines sentences
+
+    summary_text = ' '.join(str(sentence) for sentence in summary)
+    return jsonify({'summary': summary_text})
+
 @app.route('/process', methods=['POST'])
 def process_audio():
     file = request.files['file']
